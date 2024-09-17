@@ -1,0 +1,905 @@
+/* index.html */
+
+.index-page{
+    background-color: #DCF2FD;
+    
+}
+.index-page img{
+    width: 100px;
+    height: 100px;
+}
+
+.ellipse-1, .ellipse-2, .ellipse-3, .ellipse-4, .ellipse-5, .ellipse-6, .ellipse-7, .ellipse-8, .ellipse-9{
+    position: absolute;
+    background-color: #1E386B;
+    border-radius: 50%;
+}
+
+
+
+.ellipse-2 {
+    top: -20px;
+    left: -35px;
+    width: 159px;
+    height:146px;
+}
+
+.ellipse-3 {
+    top: 410px;
+    left: -45px;
+    width: 90px;
+    height: 80px;
+}
+
+.ellipse-4 {
+    top: 550px;
+    right: 65px;
+    width: 40px;
+    height: 38px;
+}
+
+.ellipse-5 {
+    top: 620px;
+    right: 110px;
+    width: 28px;
+    height: 26px;
+}
+
+.ellipse-6 {
+    top: 150px;
+    left: 40%;
+    transform: translateX(-50%);
+    width: 240px;
+    height: 245px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4863A0;
+    border-radius: 50%;
+}
+.ellipse-6 img{
+    padding-top: 30px;
+    width: 220px;
+    height: 220px;
+}
+
+.ellipse-7 {
+    top: 370px;
+    left: 280px;
+    width: 110px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #596BB3;
+    border-radius: 50%;
+}
+.ellipse-7 img{
+    width: 130px;
+    height: 130px;
+}
+
+.ellipse-8 {
+    top: 30px;
+    right: 30px;
+    width:140px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #596BB3;
+    border-radius: 50%;
+}
+.ellipse-8 img{
+    padding-left: 5px;
+    width: 100px;
+    height: 100px;
+}
+
+.ellipse-9 {
+    top: 480px;
+    left: 70px;
+    width: 150px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #596BB3;
+    border-radius: 50%;
+}
+.ellipse-9 img{
+    width: 130px;
+    height: 140px;
+}
+
+.index-page .header{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    font-size: 34px;
+    text-align: left;
+    margin-left: 20px;
+    margin-top: 650px;
+}
+
+.one-interaction-at-atime {
+    margin-bottom: 20px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    font-size: 28px;
+    text-align: left;
+    margin-left: 20px;
+    margin-top:15px;
+}
+
+.buttons a {
+    border-radius: 29px;
+    background-color: #1E386B;
+    padding: 13px 90px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    font-size: 30px;
+    margin-top: 25px;
+    margin-left: 80px;
+    margin-right: 50px;
+    border-radius: 25px;
+    display: inline-block;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+    animation: ripple 1.5s infinite; /* Faster and more frequent animation */
+    transition: transform 0.3s ease;
+}
+
+/* Ripple effect animation */
+@keyframes ripple {
+    0% {
+        box-shadow: 0 0 10px rgba(30, 56, 107, 0.5), 0 0 20px rgba(30, 56, 107, 0.4), 0 0 40px rgba(30, 56, 107, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(30, 56, 107, 1), 0 0 60px rgba(30, 56, 107, 0.8), 0 0 90px rgba(30, 56, 107, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 10px rgba(30, 56, 107, 0.5), 0 0 20px rgba(30, 56, 107, 0.4), 0 0 40px rgba(30, 56, 107, 0.3);
+    }
+}
+
+/* Additional effect on hover */
+.buttons a:hover {
+    transform: scale(1.05); /* Slightly increase the size on hover */
+}
+
+/* homepage.html */
+.homepage {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #FFFFFF; /* White background */
+    position: relative;
+    margin: 0;
+}
+
+
+#profile-icon {
+    display: flex;
+    flex-direction: column;
+    align-items:end;
+    margin-bottom: 10px; /* Space below the profile section */
+    padding: 20px;
+}
+
+#profile-icon img {
+    position: relative;
+    width: 60px; /* Adjust icon size */
+    height: 60px; /* Adjust icon size */
+    border-radius: 50%; /* Make the icon circular */
+    border: 2px solid #000000; /* Circular border around the icon */
+    margin-bottom: 5px; /* Space between the icon and text */
+    z-index: 100;
+}
+
+#profile-icon p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px; /* Adjust font size */
+    color: #000000; /* Text color */
+    margin: 0; /* Remove margin to align text properly */
+}
+
+.homepage .container {
+    position: relative;
+    width: 100%;
+    height: auto; /* Increased height */
+    background-color: #DCF2FD; /* Blue color */
+    border-top-right-radius: 250px; /* Curved top right */
+    z-index: 1; /* Ensure it sits behind the content */
+}
+
+.homepage .heading {
+    margin: 0px;
+    font-size: 36px;
+    font-weight: bold;
+    padding-left: 20px;
+    padding-top: 150px;
+    text-align: left;
+}
+
+.homepage .image {
+    position: absolute; /* Position absolutely within the container */
+    top: -150px; /* Align at the top */
+    right: 20px; /* Align at the left */
+    width: 100%; /* Adjust width with padding consideration */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.homepage .image img {
+    width: 400px;
+    height: 300px;
+    margin-top: 30px;
+    transform: scaleX(-1);
+}
+.homepage .button-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.homepage .button {
+    z-index: 10;
+    width: 180px;
+    background-color: #1E386B;
+    color: white;
+    border-radius: 20px;
+    padding: 15px;
+    text-align: center;
+    font-size: 24px;
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    position: relative;
+    overflow: hidden;        
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 
+                inset 0 -5px 10px rgba(0, 0, 0, 0.2), 
+                inset 0 5px 8px rgba(255, 255, 255, 0.3);
+    display: flex; /* Added to use flexbox layout */
+    flex-direction: column; /* Arrange content in a column */
+    align-items: center; /* Center content horizontally */
+    justify-content: center; /* Center content vertically */
+}
+
+.homepage .button img {
+    max-width: 100%; /* Ensure images don't overflow */
+    max-height: 100%; /* Ensure images don't overflow */
+    display: block; /* Remove extra space below the image */
+    margin-bottom: 10px; /* Space between image and text */
+}
+
+#button-1 img {
+    width: 100px;
+    height: 130px;
+}
+
+#button-2 img {
+    width: 120px;
+    height: 120px;
+}
+
+#button-3 img {
+    width: 120px;
+    height: 120px;
+}
+
+#button-4 img {
+    width: 150px;
+    height: 150px;
+}
+
+
+/* scenario.html + loading.html*/
+.scenario, .loading{
+    font-family: 'Open Sans', sans-serif;
+    background-color: #DCF2FD;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.scenario .back-button, .loading .back-button{
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    background-color: #DCF2FD;;
+    cursor: pointer;
+    font-size: 27px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.scenario .back-button img, .loading .back-button img{
+    width: 50px;
+    height: 50px;
+    margin-right: 5px;
+}
+
+.scenario .content, .loading .content{
+    padding: 20px;
+}
+
+.scenario .content h2, .loading .content h2{
+    margin-left: 5px;
+    margin-top: -30px;
+    margin-bottom: 20px;
+    font-size: 32px;
+    color: #333;
+}
+
+.scenario .option, .loading .option{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #1f3d7a;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 
+                inset 0 -5px 10px rgba(0, 0, 0, 0.2), 
+                inset 0 5px 8px rgba(255, 255, 255, 0.3); 
+}
+.loading .option{
+    margin-bottom: 50px;
+}
+.scenario .option{
+    margin-bottom: 30px;
+}
+.scenario .option img, .loading .option img{
+    width: 200px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    border-radius: 20px;
+}
+
+.lock-icon {
+    width: calc(30% + 20px); 
+    height: calc(30% + 20px); 
+    max-width: 80px; 
+    max-height: 80px; 
+    object-fit: contain; 
+}
+
+.locked .overlay {
+    display: flex;
+}
+
+.locked {
+    pointer-events: none; /* Prevent clicking on locked buttons */
+    opacity: 0.5;
+}
+
+#feedback-img{
+    width: 300px;
+    margin-bottom: 30px;
+}
+
+#loadgame-img{
+    width: 300px;  
+}
+
+.scenario .option-text, .loading .option-text{
+    font-size: 28px;
+}
+.loading .option-text{
+    text-align: center;
+}
+
+
+/* difficulty.html */
+
+.difficulty-bar {
+    display: flex;
+    align-items: center;
+    margin-right: 230px;
+    font-size: 20px;
+  }
+  
+  .bar1 {
+    width: 50px; /* Adjust width to your preference */
+    height: 17px; /* Adjust height to your preference */
+    background-color: #49FA65; /* Yellow color for the bar */
+    border-radius: 10px; /* Rounded edges */
+    margin-right: 8px; /* Space between the bar and the text */
+  }
+  
+  .bar2 {
+    margin-left: 30px;
+    width: 50px; /* Adjust width to your preference */
+    height: 17px; /* Adjust height to your preference */
+    background-color: #E6FF82; /* Yellow color for the bar */
+    border-radius: 10px; /* Rounded edges */
+    margin-right: 8px; /* Space between the bar and the text */
+  }
+  
+  .bar3 {
+    width: 50px; /* Adjust width to your preference */
+    height: 18px; /* Adjust height to your preference */
+    background-color: #FF4A4A; /* Yellow color for the bar */
+    border-radius: 10px; /* Rounded edges */
+    margin-left: -2px;
+    margin-right: 8px; /* Space between the bar and the text */
+  }
+  #minds-img{
+    margin-top: 30px;
+    margin-left: 10px;
+    width: 260px;
+  }
+
+  #workplace-img{
+    margin-top: 30px;
+  }
+
+
+
+  /* specific-scenario */
+  .specific-scenario {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #DCF2FD;
+}
+
+.specific-scenario .container {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.specific-scenario .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.specific-scenario .icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 15px; 
+}
+
+.specific-scenario .icon-container img {
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.specific-scenario .icon-label {
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+}
+
+.specific-scenario .main-content {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.specific-scenario .image-container img {
+    margin-top: 20px;
+    width: 300px;
+    max-height: 285px; 
+    height: auto; 
+    margin-bottom: 10px;
+    object-fit: contain; 
+}
+
+
+.specific-scenario .text-title {
+    font-size: 34px;
+    font-weight: bold;
+    color: #333;
+}
+
+.specific-scenario .options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.specific-scenario .option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 28px;
+    margin: 15px;
+    background: linear-gradient(145deg, #1E386B, #2A4C8A); 
+    color: white; 
+    border-radius: 50px; 
+    border: none; 
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 
+                inset 0 -5px 10px rgba(0, 0, 0, 0.2), 
+                inset 0 5px 8px rgba(255, 255, 255, 0.3); 
+    font-weight: 600; 
+    font-size: 16px;
+    cursor: pointer; 
+    transition: transform 0.2s ease, box-shadow 0.2s ease; 
+    touch-action: manipulation; 
+}
+
+.specific-scenario .option:active {
+    transform: translateY(2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35), 
+                inset 0 -5px 10px rgba(0, 0, 0, 0.15), 
+                inset 0 5px 8px rgba(255, 255, 255, 0.25); 
+}
+
+
+.specific-scenario .option-text {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.specific-scenario .speech-bubble {
+    width: 125px;
+    height: 125px;
+}
+.specific-scenario .exit-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px; 
+    margin: 20px 20px 20px auto; 
+    background: linear-gradient(145deg, #1E386B, #2A4C8A); 
+    color: white;
+    border-radius: 20px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3), 
+                inset 0 -4px 8px rgba(0, 0, 0, 0.2), 
+                inset 0 4px 8px rgba(255, 255, 255, 0.2); 
+    border: none; 
+    width: 50%; 
+    transition: box-shadow 0.3s ease, transform 0.2s ease; 
+}
+
+.specific-scenario .exit-box:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35),
+                inset 0 -4px 8px rgba(0, 0, 0, 0.15), 
+                inset 0 4px 8px rgba(255, 255, 255, 0.25); 
+    transform: translateY(-2px); 
+}
+
+.specific-scenario .exit-box:active {
+    transform: translateY(2px); 
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 
+                inset 0 -4px 8px rgba(0, 0, 0, 0.15), 
+                inset 0 4px 8px rgba(255, 255, 255, 0.2); 
+}
+
+
+.specific-scenario .exit-box .exit-icon {
+    width: 35px; /* Increased size */
+    height: auto;
+    margin-right: 10px;
+}
+
+.specific-scenario .exit-box .exit-text {
+    font-size: 26px; /* Increased size */
+}
+
+/*badges.html*/
+.badges {
+    font-family: "Open Sans", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:  #DCF2FD;
+    overflow-y: auto;
+}
+.badges .back-button{
+    display: flex;
+    align-items: center;
+    padding: 30px 30px 0px 30px;
+    background-color: #DCF2FD;
+    cursor: pointer;
+    font-size: 27px;
+    text-decoration: none;
+    color: #000000;
+}
+
+.badges  .back-button img{
+    width: 50px;
+    height: 50px;
+    margin-right: 5px;
+}
+.badges h2{
+    color: black;
+    font-size: 30px;
+    margin: 20px 0px;
+}
+.badges h3{
+    color: black;
+    margin: 20px 0px;
+    font-size: 32px;
+}
+
+#badge-display p {
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.badges .profile-container {
+    padding: 0px 20px;
+    height:auto;
+    width: 390px;
+    text-align: center;
+    color: white;
+}
+
+
+.badges .avatar {
+    background-color: #ffffff;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto; /* Add this line */
+    display: flex; /* Add this line */
+    justify-content: center; /* Add this line */
+    align-items: center; /* Add this line */
+}
+
+.badges .avatar img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    border-radius: 50%; 
+}
+
+.badges #badges-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.badges .badge {
+    background-color: #1f3d7a;
+    padding: 10px;
+    margin: 5px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 30px;
+    padding-top: 30px;
+}
+
+.badges .badge p {
+    font-size: 28px;
+    margin: 20px 0;
+}
+
+#body-badge {
+    font-size: 23px;
+    margin-bottom: 0; /* Remove any unwanted bottom margin */
+    padding-top: 0; /* Ensure no extra padding above the text */
+}
+
+.badges .badge img {
+    width: 150px;
+    height: auto; 
+}
+
+
+.badges .carousel {
+    width: 100%;
+    max-width: 400px; 
+    margin: 0 auto; 
+}
+
+
+.badges .button-container {
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 20px; 
+}
+
+#prev-button,
+#next-button {
+    background-color: #1f3d7a;
+    color: white;
+    width: 60px; 
+    height: 60px;
+    font-size: 20px; 
+    font-weight: bold;
+    border-radius: 50%; 
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px; 
+}
+
+
+
+
+
+
+/* chatbot page styling */
+
+.chatbot-useraction {
+    margin-bottom: 0rem !important;
+}
+
+.chatbot-exit {
+    margin-right: -1rem;
+    font-size: x-large;
+}
+
+.chatbot {
+    max-width: 430px;
+    height: 932px;
+
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.chatbot-header {
+    background-color: #193295fb;
+    color: #ffffff;
+    font-weight: bolder;
+    font-size: x-large;
+}
+
+.chatbot-exit:hover {
+    opacity: 0.7;
+}
+
+.chatbot-convo {
+    height: 77vh;
+    overflow-y: auto;
+    padding: 15px;
+    background-color: #F0F8FF;
+}
+
+.chatbot-useraction {
+    height: 60px;
+}
+
+.chatbot-useraction-send {
+    background-color: #193295fb;
+    height: 60px;
+    width: 60px;
+}
+
+.chatbot-useraction-mic {
+    background-color: #4A90E2;
+    height: 60px;
+    width: 60px;
+    opacity: 0.7;
+}
+
+.chatbot-useraction-send:hover {
+    background-color: #6a87fc;
+}
+
+.chatbot-useraction-mic:hover {
+    background-color: #6ab0ff;
+}
+
+.message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 15px;
+    position: relative;
+    min-width: 120px;
+}
+
+.message .message-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+
+.message .timestamp {
+    font-weight: bold;
+    font-size: 0.8rem; /* Adjust the font size as needed */
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+
+.user-message {
+    background-color: #87CEFA;
+    text-align: left;
+    margin-left: auto; /* Aligns the user message to the right */
+    max-width: 70%; /* Limit the width of the user message */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Shadow for the pop-out effect */
+}
+
+.bot-message {
+    background-color: #ADD8E6;
+    text-align: left;
+    margin-right: auto; /* Aligns the bot message to the left */
+    max-width: 70%; /* Limit the width of the bot message */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Shadow for the pop-out effect */
+}
+
+.profile-pic {
+    width: 40px; /* Size of the profile picture */
+    height: 40px; /* Size of the profile picture */
+    border-radius: 50%; /* Make it circular */
+    margin-right: 10px; /* Space between the profile pic and text */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Shadow for the pop-out effect */
+}
+
+.message-container {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    margin-bottom: 10px; /* Space between messages */
+}
+
+.outer-container {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.button-container {
+    display: flex;
+    gap: 25px;
+}
+
+.button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #596BB3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 100px; /* Set a minimum width for the buttons */
+    border-radius: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Shadow for the pop-out effect */
+}
+
+.button:hover {
+    opacity: 0.7;
+}
+
+.button img {
+    width: 50px; /* Adjust the image size as needed */
+    height: 50px;
+}
+
+.icon-group {
+    font-size: 24px; /* Adjust this value to your desired size */
+}

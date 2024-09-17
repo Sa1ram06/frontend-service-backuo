@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoeial</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+     <!-- Lottie Link-->
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+</head>
+<style>
+    .tutorial{
+        font-family: 'Open Sans', sans-serif;
+        background-color: #DCF2FD;
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .tutorial .back-button{
+        display: flex;
+        align-items: center;
+        padding: 30px;
+        background-color: #DCF2FD;;
+        cursor: pointer;
+        font-size: 27px;
+        text-decoration: none;
+        color: #000000;
+    }
+
+    .tutorial .back-button img{
+        width: 50px;
+        height: 50px;
+        margin-right: 5px;
+    }
+
+    .tutorial .content{
+        padding: 20px;
+    }
+
+    .tutorial .content h2{
+        margin-left: 5px;
+        margin-top: -30px;
+        margin-bottom: 20px;
+        font-size: 32px;
+        color: #333;
+    }
+
+    .tutorial .option{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #1f3d7a;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 20px;
+        color: #fff;
+        text-decoration: none;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 
+                    inset 0 -5px 10px rgba(0, 0, 0, 0.2), 
+                    inset 0 5px 8px rgba(255, 255, 255, 0.3); 
+    }
+
+    .tutorial .option{
+        margin-bottom: 30px;
+    }
+    .tutorial .option img{
+        width: 200px;
+        height: 200px;
+        margin-top: 10px;
+        margin-right: 10px;
+        margin-bottom: 20px;
+    }
+    .tutorial .option-text{
+        font-size: 28px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    #non-verbal-communication-img{
+        width: 350px;
+        height:300px;
+    }
+</style>
+<body class = "tutorial">
+    <a href = "../homepage-pages/homepage.html" class="back-button">
+        <img src="../images/scenario-html/back-icon.png" alt="Back">
+        <span>Back</span>
+    </a>
+    <div class="content">
+        <h2>Choose a Skill Focus</h2>
+        <a href="../tutorials-pages/different-tutorials.html" id = "non-verbal-communication" class="option tutorial-selection"  data-skill = "non-verbal-communication">
+            <img id = "non-verbal-communication-img" src="../images/tutorials-html/non-verbal-communication.png" alt="non-verbal-communication">
+            <div class="option-text">Non Verbal Communication</div>
+        </a>
+        <a href="#" id = "tone-of-voice" class="option tutorial-selection"  data-skill = "tone-of-voice">
+            <img id = "tone-of-voice-img" src="../images/tutorials-html/tone-of-voice.png" alt="tone-of-voice">
+            <div class="option-text">Tone of Voice</div>
+        </a>
+        <a href="#" id = "body-facial-expression" class="option tutorial-selection"  data-skill= "body-facial-expression">
+            <img id = "body-facial-expression-img" src="../images/tutorials-html/body-language.png" alt="body-facial-expression">
+            <div class="option-text">Body & Facial Expressions</div>
+        </a>
+        <a href="#" id = "active-listening" class="option tutorial-selection"  data-skill = "active-listening">
+            <img id = "active-listenin-img" src="../images/tutorials-html/active-listening.png" alt="active-listening"">
+            <div class="option-text">Active Listening</div>
+        </a>
+    </div>
+    <script src = "../scripts/tutorials.js"></script>
+    <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('.tutorial-selection').forEach(option => {
+                    option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const skill = this.dataset.skill;
+                    const videos = videoData[skill];
+                    console.log(videos)
+                    if (videos) {
+                            localStorage.setItem('selectedVideos', JSON.stringify(videos));
+
+                            // Optional: Redirect to another page if needed
+                            window.location.href = '../tutorials-pages/different-tutorials.html';
+                        } else {
+                            console.error('No videos found for skill:', skill);
+                        }
+                    });
+                });
+            });
+    </script>
+</body>
+</html>

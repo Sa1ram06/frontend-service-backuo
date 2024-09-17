@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Selection</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+    <!-- Lottie Link-->
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+</head>
+<style>
+    .video-selection{
+        font-family: 'Open Sans', sans-serif;
+        background-color: #DCF2FD;
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .video-selection .back-button{
+        display: flex;
+        align-items: center;
+        padding: 30px;
+        background-color: #DCF2FD;
+        cursor: pointer;
+        font-size: 27px;
+        text-decoration: none;
+        color: #000000;
+    }
+
+    .video-selection .back-button img{
+        width: 50px;
+        height: 50px;
+        margin-right: 5px;
+    }
+
+    .selection-content{
+        padding: 20px;
+    }
+
+    .video-selection-title{
+        margin-left: 5px;
+        margin-top: -30px;
+        margin-bottom: 20px;
+        font-size: 32px;
+        color: #333;
+    }
+
+    .video-card {
+        background-color: #1f3d7a;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        padding: 15px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 
+                    0 6px 20px rgba(0, 0, 0, 0.1), 
+                    0 8px 30px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+
+    .video-thumbnail iframe {
+        border-radius: 10px;
+        width: 100%;
+        height: 200px;
+        pointer-events: none;
+    }
+
+    .video-info {
+        padding-top: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: left;
+    }
+
+    .video-channel-icon {
+        width: 65px;
+        height: 65px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+
+    .video-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .video-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #ffffff;
+        margin-bottom: 5px;
+    }
+
+    .video-meta {
+        font-size: 18px;
+        color: #b0c4de;
+    }
+
+
+
+    .video-details-container {
+        margin: 20px auto;
+        max-width: 800px;
+        }
+    
+    .selected-video iframe {
+        width: 100%;
+        height: 315px;
+        padding: 0;
+    }
+
+    .video-description {
+        padding: 20px;
+    }
+
+    .video-icon-title {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .video-description-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+
+    .video-description-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .selected-video-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .selected-video-video-meta {
+        font-size: 20px;
+        color: #666;
+    }
+
+    .video-highlights {
+        background-color: #1f3d7a;
+        margin-top: 20px;
+        border-radius: 20px;
+        padding: 20px;
+    }
+
+    .video-highlights h1 {
+        font-size: 28px;
+        color: white;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        text-decoration: underline; /* Adds an underline */
+        font-style: italic; /* Makes the text italic */
+    }
+
+
+    .video-highlights ul {
+        list-style-type: disc;
+        padding-left: 20px;
+        font-size: 20px;
+        color: white;
+    }
+
+    .video-highlights li {
+        margin-bottom: 10px;
+        font-weight: 400; 
+    }
+
+</style>
+<body class="video-selection">
+    <a href="../tutorials-pages/tutorials-selection.html" class="back-button">
+        <img src="../images/scenario-html/back-icon.png" alt="Back">
+        <span>Back</span>
+    </a>
+    <div class="selection-content">
+        <h2 class = "video-selection-title">Choose a Video to Watch</h2>  
+        <div class="video-card">
+            <div class="video-thumbnail">
+                <iframe
+                    src="https://www.youtube.com/embed/HxDqYEl20hI"
+                    title="Video Thumbnail 1"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
+            </div>      
+            <div class="video-info">
+                <img src="../images/different-scenarios/base/sound-icon.png" alt="Channel Icon" class="video-channel-icon">
+                <div class="video-details">
+                    <div class="video-title">Understanding Non-Verbal Communication</div>
+                    <div class="video-meta">Communication Skills • 8 months ago</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="video-details-container" style="display: none;">
+        <div class="selected-video">
+            <iframe
+                src="https://www.youtube.com/embed/HxDqYEl20hI"
+                title="Selected Video"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+        <div class="video-description">
+            <div class="video-icon-title">
+                <img src="../images/different-scenarios/base/sound-icon.png" alt="Video Icon" class="video-description-icon">
+                <div class="video-description-details">
+                    <div class="selected-video-title">Understanding Non-Verbal Communication</div>
+                    <div class="selected-video-video-meta">Communication Skills • 8 months ago</div>
+                </div>
+            </div>
+            <div class="video-highlights">
+                <h1>Highlights</h1>
+                <ul>
+                    <li>Introduction to non-verbal communication</li>
+                    <li>Examples of body language</li>
+                    <li>Importance of facial expressions</li>
+                    <li>Common misconceptions</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script src = "../scripts/tutorials.js"></script>
+</body>
+</html>

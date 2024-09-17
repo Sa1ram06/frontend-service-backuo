@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask Minds Page</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+    <style>
+        #Notification {
+            display: none; /* Initially hidden */
+            padding: 20px;
+            background-color:#1E386B;; /* Green for success message */
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+
+            /* Flexbox to center text vertically and horizontally */
+            display: flex;
+            flex-direction: column; /* Stacks the animation and text vertically */
+            justify-content: center;
+            align-items: center;
+            min-height: 300px; /* Adjusted height to accommodate the animation */
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+            text-align: center;
+            border-radius: 20px;
+        }
+        #notification-child {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 1.2em;
+            margin: 0; /* Remove margin to ensure proper centering */
+            margin-top: 20px; /* Give some space between the text and animation */
+            text-align: center;
+            color:#ffffff
+        }
+    </style>
+</head>
+<body class="scenario">
+    <a href="./booking.html" class="back-button">
+        <img src="../images/scenario-html/back-icon.png" alt="Back">
+        <span>Back</span>
+    </a>
+    <div class="content">
+        <h2>Ask MINDS<br></h2>
+        <a onclick="displaySuccessNotification()" class="option">
+            <img src="../images/booking/orientation-department.png" alt="Notify MINDS">
+            <div class="option-text">Ask for Practice</div>
+        </a>
+
+        <div id="Notification">
+            <!-- Lottie Animation -->
+            <dotlottie-player src="https://lottie.host/b371ae55-1d94-4756-af60-2d215b29d319/PYHdabwx7M.json" 
+                background="transparent" 
+                speed="1" 
+                style="width: 200px; height: 200px;" 
+                loop 
+                autoplay>
+            </dotlottie-player>
+            <h2 id="notification-child">Your request has been successfully sent to MINDS staff. Please wait for their response.</h2>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById("Notification").style.display = "none";
+        async function displaySuccessNotification() {
+            // Show the notification
+            document.getElementById("Notification").style.display = 'flex';
+            /*
+            const clientId = "ACC00002";
+            const staffId = "ACC00001";
+            const date = "2024-9-13";
+            const time = "1:00 PM - 2:00 PM";
+            const location = "On Zoom";
+            const slots = 1;
+            const description = "Scenario Practice";
+
+            setTimeout(3000);
+
+            // create Session
+            const createSessionResponse = await fetch(`https://booking-service-np.apps.hackathon.cnasg.dellcsc.com/api/session`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ staffId, date, time, location, slots, description }),
+            });
+
+            const createdSessionJson = await createSessionResponse.json();
+            const createdSession = createdSessionJson.session;
+            await console.log(createdSession);
+
+            if (createSessionResponse.status === 201) {
+                const sessionId = await createdSession.sessionId;
+
+                console.log(sessionId);
+
+                // create Booking
+                const createBooking = await fetch(`https://booking-service-np.apps.hackathon.cnasg.dellcsc.com/api/booking`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ sessionId, clientId }),
+                });
+
+                document.getElementById("Notificiation-child").textContent = "SUCCESS! MINDS has booked a session for you!";
+                document.getElementById("Notificiation-child").appendChild(document.createElement("br"));
+                document.getElementById("Notificiation-child").appendChild(document.createTextNode("Go back to view your Bookings"));
+            } else {
+                document.getElementById("Notificiation-child").textContent = "Please talk to your MINDS Coach if you see this message.";
+                document.getElementById("Notificiation-child").appendChild(document.createTextNode("Go back to view your Bookings"));
+            }
+             */
+            
+        }
+    </script>
+</body>
+</html>

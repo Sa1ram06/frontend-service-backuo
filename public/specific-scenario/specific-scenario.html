@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+     <!-- Lottie Link-->
+     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+     
+</head>
+<style>
+    /* Styling for the consequence popup */
+    .popup, .exit-popup, .sound-popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5); /* Overlay behind the popup */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .popup-content,.exit-popup-content,.sound-popup-content {
+        background-color: #596BB3; 
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        width: 80%; 
+        max-width: 600px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        z-index: 1001;
+        position: relative; 
+        margin: auto; 
+    }
+
+    .popup-content img, .exit-popup-content img, .sound-popup-content img {
+        width: calc(100% - 40px); 
+        height: calc(0.4 * (80vh - 40px)); 
+        display: block;
+        margin: 0 auto; 
+        object-fit: contain; 
+    }
+
+
+    #consequence-popup .popup-content {
+        border: 5px solid #F41919;
+    }
+
+    #continue-popup .popup-content {
+        border: 5px solid #51BC63;
+    }
+
+    #consequence-text, #continue-text {
+        color: white; 
+        font-size: 24px; 
+        margin: 20px 0;
+    }
+
+    #try-again, #next, #start-button,#info-next-button {
+        font-family: 'Open Sans', sans-serif;
+        background: linear-gradient(145deg, #1E386B, #2A4C8A); 
+        color: white;
+        border-radius: 20px;
+        padding: 15px 30px;
+        font-size: 24px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease; 
+        margin-top: 20px;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3), 
+                    inset 0 -4px 6px rgba(0, 0, 0, 0.2), 
+                    inset 0 4px 6px rgba(255, 255, 255, 0.2); 
+        border: 3px solid #84D8FF; 
+    }
+    #start-button{
+        margin-top: 5px;
+    }
+    #try-again:hover, #next:hover,  #start-button:hover,#info-next-button {
+        background: linear-gradient(145deg, #16306F, #1E386B);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35),
+                    inset 0 -4px 6px rgba(0, 0, 0, 0.15), 
+                    inset 0 4px 6px rgba(255, 255, 255, 0.25); 
+    }
+
+    #try-again:active, #next:active {
+        transform: translateY(2px); 
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 
+                    inset 0 -4px 6px rgba(0, 0, 0, 0.15), 
+                    inset 0 4px 6px rgba(255, 255, 255, 0.2); 
+    }
+
+
+    .exit-popup-content p,.sound-popup-content p{
+        color: white;
+        font-size: 24px;
+    }
+
+    .exit-popup-content button, .sound-popup-content button {
+        font-family: 'Open Sans', sans-serif;
+        background: linear-gradient(145deg, #1E386B, #2A4C8A); 
+        color: white;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3),
+                    inset 0 -4px 8px rgba(0, 0, 0, 0.2), 
+                    inset 0 4px 8px rgba(255, 255, 255, 0.2);
+        border: 3px solid #84D8FF; 
+        border-radius: 20px;
+        padding: 10px 20px;
+        font-size: 24px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease; 
+        margin: 10px;
+    }
+
+    .exit-popup-content button:hover, .sound-popup-content button:hover {
+        background: linear-gradient(145deg, #16306F, #1E386B); 
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35), 
+                    inset 0 -4px 8px rgba(0, 0, 0, 0.15), 
+                    inset 0 4px 8px rgba(255, 255, 255, 0.25); 
+    }
+
+    .exit-popup-content button:active, .sound-popup-content button:active {
+        transform: translateY(2px); 
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 
+                    inset 0 -4px 8px rgba(0, 0, 0, 0.15), 
+                    inset 0 4px 8px rgba(255, 255, 255, 0.2); 
+    }
+
+
+    .exit-popup-close{
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        background-color: #1E386B;
+        border-radius: 50%; 
+        border: none;
+        font-size: 28px; 
+        width: 40px; 
+        height: 40px; 
+        color: white;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .disabled {
+        pointer-events: none; /* Disable all mouse events */
+    }
+
+    @keyframes shake {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-20px); }
+        50% { transform: translateX(20px); }
+        75% { transform: translateX(-20px); }
+        100% { transform: translateX(0); }
+    }
+
+    .shake {
+        animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.43, 0.97) infinite;
+    }
+
+    .confetti-container {
+        display: none;
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100vw; 
+        height: 100vh; 
+        z-index: 9999; 
+    }
+
+    #confettiAnimation{
+        position: absolute; 
+        top: 0; 
+        left: 0;
+    }
+
+    #lottie-container {
+        display: none; 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #lottie-player {
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain; 
+    }
+
+    .progress-container {
+        width: 100%;
+        background-color: #F8F9FA; 
+        border-radius: 15px;
+        margin: 10px 20px;
+        height: 35px;
+        max-width: 390px;
+        position: relative;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15),
+                    inset 0 3px 5px rgba(255, 255, 255, 0.4); 
+        overflow: hidden;
+        border: 2px solid #E0E0E0; 
+        background: linear-gradient(135deg, #FAFAFA 25%, #EAEAEA 100%); 
+    }
+
+    .progress-bar {
+        width: 0;
+        height: 100%;
+        background: linear-gradient(90deg, #1E386B, #2A4C8A); 
+        border-radius: 15px;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15),
+                    inset 0 1px 8px rgba(255, 255, 255, 0.3),
+                    0 0 8px rgba(30, 56, 107, 0.6); 
+        transition: width 0.6s ease, background 0.6s ease;
+    }
+
+    .progress-text {
+        font-family: 'Open Sans', sans-serif;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 20px;
+        font-weight: 600;
+        color: #1E386B; 
+        letter-spacing: 0.5px;
+    }
+
+    #gameinfo-popup h1 {
+        color: #EAEAEA;
+        font-size: 28px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        font-family: 'Open Sans', sans-serif;
+        text-align: center;
+        font-style: italic; /* Italic style for emphasis */
+        text-shadow: 
+        2px 2px 0 #3D5A80, /* Larger offset for a more pronounced effect */
+        4px 4px 0 #2A4C8A, /* More offset for enhanced depth */
+        6px 6px 4px rgba(0, 0, 0, 0.5); /* Larger blur and shadow for depth */
+    }
+
+    #gameinfo-popup h2 {
+        color:  #EAEAEA;
+        font-size: 26px; 
+        margin-bottom: 10px; 
+        font-family: 'Open Sans', sans-serif;
+        text-align: left;
+        font-style: italic; 
+        text-shadow: 
+        2px 2px 0 #3D5A80, 
+        4px 4px 0 #2A4C8A, 
+        6px 6px 4px rgba(0, 0, 0, 0.5); 
+    }
+    .background-box{
+        background-color: #1E386B; 
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); 
+        border-radius: 20px;
+    }
+    .info-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 12px; 
+        padding: 5px 10px;
+        margin-bottom: 20px; 
+        transition: background-color 0.3s ease, box-shadow 0.3s ease; 
+    }
+
+    .info-text {
+        color: #EAEAEA;
+        font-size: 20px; 
+        font-family: 'Open Sans', sans-serif;
+        text-align: left;
+        flex: 1;
+        padding-right: 15px;
+    }
+
+    .info-image img {
+        margin: 5px; 
+        width: 60px; 
+        height: 60px;
+        border-radius: 8px; 
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); 
+    }
+    .info-animation {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        height: 100px;
+        border-radius: 8px;
+    }
+
+</style>
+<body class = "specific-scenario">
+
+    <!--Lottie animation-->
+    <div id="lottie-container">
+        <dotlottie-player id = "lottie-player" src="https://lottie.host/c6be0bba-7044-4314-8b2b-2c4e238294e5/JbJZhX1aMp.json" background="transparent" speed="1" loop="1"></dotlottie-player>
+    </div>
+    <!--Game Info Pop-Up-->
+    <div id="gameinfo-popup" class="popup">
+        <div class="popup-content">
+            <div id="initial-content">
+                <h1> Game Features </h1>
+                <h2> Game Icons </h2>
+                <div class = "background-box">
+                    <div class="info-container">
+                        <div class="info-text">Read Aloud</div>
+                        <div class="info-image">
+                            <img src="../images/different-scenarios/base/text-to-speech.png" alt="text-to-speech Image">
+                        </div>
+                    </div>
+                    <div class="info-container">
+                        <div class="info-text">Play Music</div>
+                        <div class="info-image">
+                            <img src="../images/different-scenarios/base/sound-icon.png" alt="music Image">
+                        </div>
+                    </div>
+                    <div class="info-container">
+                        <div class="info-text">Mute Music</div>
+                        <div class="info-image">
+                            <img src="../images/different-scenarios/base/mute-icon.png" alt="Mute Image">
+                        </div>
+                    </div>
+                    <div class="info-container">
+                        <div class="info-text">Exit the Game</div>
+                        <div class="info-image">
+                            <img src="../images/different-scenarios/base/exit.png" alt="Exit Image">
+                        </div>
+                    </div>
+                </div>
+                <button id="info-next-button">Next</button>
+            </div>
+           <!-- Content to Show on Next Button Click -->
+        <div id="scroll-content" style="display: none;">
+            <h2> Game Scrolls </h2>
+            <div class = "background-box">
+                <div class="info-container">
+                    <div class="info-text">Tap on Icon </div>
+                    <div class="info-animation">
+                        <dotlottie-player src="https://lottie.host/ea2b4bf9-279f-473c-b2d7-7a22a7f00e75/73aFisdmWF.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+                    </div>
+                </div>
+                <div class="info-container">
+                    <div class="info-text">Scroll down </div>
+                    <div class="info-animation">
+                        <dotlottie-player src="https://lottie.host/34147ce5-b878-4f05-b9ae-a4cd22deab4e/0HLUWNdBkT.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+                    </div>
+                </div>
+            </div>
+            <button id="start-button">Start</button>
+        </div>
+        </div>
+    </div>
+    <!--Header-->
+    <div class="header" id = "header">
+        <div class="icon-container">
+            <img src="../images/different-scenarios/base/text-to-speech.png" alt="Text to Speech Icon" id="text-to-speech-icon" class="text-to-speech-icon">
+            <p class="icon-label">Read Aloud</p>
+        </div>
+        <div class="icon-container">
+            <img src="../images/different-scenarios/base/sound-icon.png" alt="Sound Icon" id="sound-icon" class="sound-icon">
+            <p class="icon-label">Music</p>
+        </div>
+    </div>
+    <!--Progress Bar-->
+    <div class="progress-container" id="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="progress-text" id="progressText">0%</div>
+    </div>
+    
+    <!--sound confirmation-->
+    <div id="sound-confirmation-popup" class="sound-popup" style="display: none;">
+        <div class="sound-popup-content">
+            <img id="sound-image" src="../images/different-scenarios/base/music.png" alt="Music Image">
+            <p>Do you want background enviromental music</p>
+            <button id="yes-sound">Yes</button>
+            <button id="no-sound">No</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="image-container">
+            <img id="phase-image" src="#" alt="image">
+        </div>
+        <div id="phase-title" class="text-title">Casual hello</div>
+    </div>
+
+    <div class="options">
+        <div class="option" data-consequence="">
+            <div id="option1-text" class="option-text">Option1</div>
+            <img id="option1-image" src="" alt="Speech Bubble" class="speech-bubble">
+        </div>
+        <div class="option" data-consequence="">
+            <div id="option2-text" class="option-text">Option2</div>
+            <img id="option2-image" src="" alt="Speech Bubble" class="speech-bubble">
+        </div>
+    </div>
+    <!--consquence confirmation-->
+    <div id="consequence-popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <img id="consequence-image" src="" alt="Consequence Image">
+            <div id="consequence-text">Consequence Text</div>
+            <button id="try-again">Try Again</button>
+        </div>
+    </div>
+    <!--confetto-->
+    <div class="confetti-container" id="confettiContainer" style="display: none;">
+        <dotlottie-player id = "confettiAnimation" src="https://lottie.host/72eb8051-9915-4e4f-8516-d963984e2ec6/HFdBdkfCzh.json" background="transparent" speed="1" loop autoplay></dotlottie-player>
+    </div>
+    <!--continue confirmation-->
+    <div id="continue-popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <img id="continue-image" src="" alt="Consequence Image">
+            <div id="continue-text">Consequence Text</div>
+            <button id="next">Next</button>
+        </div>
+    </div>
+    <!--exit confirmation-->
+    <div id="exit-confirmation-popup" class="exit-popup" style="display: none;">
+        <div class="exit-popup-content">
+            <span class="exit-popup-close">&times;</span>
+            <img id="exit-image" src="../images/different-scenarios/base/leave-icon.png" alt="Exit Image">
+            <p>Are you sure you want to exit the game?</p>
+            <button id="confirm-exit">Save Game and Exit</button>
+            <button id="cancel-exit">Cancel</button>
+        </div>
+    </div>
+    <!--Exit box-->
+    <div class="exit-box">
+        <img src="../images/different-scenarios/base/exit.png" alt="Exit Icon" class="exit-icon">
+        <div class="exit-text">Exit Game</div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const headerContainer = document.getElementById('header');
+            const phaseImage = document.getElementById('phase-image');
+            const phaseTitle = document.getElementById('phase-title');
+            const souPopup = document.getElementById('consequence-popup');
+            const consequencePopup = document.getElementById('consequence-popup');
+            const consequenceImage = document.getElementById('consequence-image');
+            const consequenceText = document.getElementById('consequence-text');
+            const options = document.querySelectorAll('.option');
+            const tryAgainButton = document.getElementById('try-again');
+            const exitBox = document.querySelector('.exit-box');
+            const exitConfirmationPopup = document.getElementById('exit-confirmation-popup');
+            const soundConfirmationPopup = document.getElementById('sound-confirmation-popup');
+            const confirmExitButton = document.getElementById('confirm-exit');
+            const cancelExitButton = document.getElementById('cancel-exit');
+            const closeExitPopup = document.querySelector('.exit-popup-close');
+            const textToSpeechIcon = document.getElementById('text-to-speech-icon');
+            const yesSoundButton = document.getElementById('yes-sound');
+            const noSoundButton = document.getElementById('no-sound');
+            const soundIcon = document.getElementById('sound-icon');
+            const continuePopup = document.getElementById('continue-popup');
+            const continueImage = document.getElementById('continue-image');
+            const continueText = document.getElementById('continue-text');
+            const nextButton = document.getElementById('next');
+            const confettiContainer = document.getElementById('confettiContainer');
+            const confettiAnimation = document.getElementById('confettiAnimation');
+            const lottieContainer = document.getElementById('lottie-container');
+            const lottiePlayer = document.getElementById('lottie-player');
+            const progressContainer = document.getElementById('progress-container');
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            const startbutton = document.getElementById('start-button')
+            const gameInfo = document.getElementById('gameinfo-popup')
+
+            // Get data from local storage
+            const selectedLevelData = JSON.parse(localStorage.getItem('selectedLevelData'));
+            const savedPhaseData = JSON.parse(localStorage.getItem('currentPhase')) || {};
+            const gameState = localStorage.getItem('gameState');
+
+            progressContainer.style.display = "block"
+            header.style.display = "flex";
+
+            let audio;
+            let isPlaying = false;
+            let badgeList = JSON.parse(localStorage.getItem('badgeList')) || [];
+            let currentPhase = 0;
+            let progress; 
+
+            document.getElementById('info-next-button').addEventListener('click', function() {
+                document.getElementById('initial-content').style.display = 'none';
+                document.getElementById('scroll-content').style.display = 'block';
+            });
+
+            // Function to play Lottie animation once
+            function playLottieAnimation() {
+                console.log('Playing Lottie Animation');
+                // Show the Lottie animation container
+                lottieContainer.style.display = 'flex';
+
+                // Start the animation
+                lottiePlayer.play();
+
+                // Listen for the completion of the animation
+                lottiePlayer.addEventListener('complete', () => {
+                    // Hide the Lottie animation container after playing
+                    lottieContainer.style.display = 'none';
+                });
+            }
+
+            startbutton.addEventListener('click', function() {
+                gameInfo.style.display = 'none';
+                playLottieAnimation();
+                soundConfirmationPopup.style.display = 'flex';
+            });
+
+            // Initialize UI with phase data based on gameState
+            function initializePhase() {
+                if (gameState === "old" && savedPhaseData.level && savedPhaseData.level.phases) {
+                    // Use saved phase data if available
+                    currentPhase = savedPhaseData.phase || 0;
+                    updateUI(savedPhaseData.level.phases[currentPhase]);
+                    updateProgressBar(currentPhase, savedPhaseData.level.phases.length);
+                } else if (selectedLevelData && selectedLevelData.phases.length > 0) {
+                    // Start from phase 0 if the state is "new"
+                    updateUI(selectedLevelData.phases[currentPhase]);
+                    updateProgressBar(currentPhase, selectedLevelData.phases.length);
+                }
+            }
+            
+            // Function to play environmental musi
+            function playEnvironmentMusic() {
+                let audioSrc;
+                if (gameState === "old") {
+                    audioSrc =  savedPhaseData.level['environment-music'];
+                } else {
+                    audioSrc =  selectedLevelData['environment-music'];
+                }
+                audio = new Audio(audioSrc);
+                audio.volume = 0.3
+                audio.loop = true;
+                audio.play().catch(error => {
+                    console.error("Error playing audio:", error);
+                });
+            }
+
+            // Function to stop environmental music
+            function stopEnvironmentMusic() {
+                if (audio) {
+                    audio.pause();
+                    audio.currentTime = 0; // Reset the audio to the start
+                    audio = null;
+                }
+            }
+
+            // Handle user's sound confirmation choice
+            function handleSoundConfirmation(choice) {
+                if (choice === 'yes') {
+                    playEnvironmentMusic();
+                    isPlaying = true;
+                }
+                else{
+                    soundIcon.src = "../images/different-scenarios/base/mute-icon.png";
+                }
+                soundConfirmationPopup.style.display = 'none';
+            }
+
+            // Toggle sound on icon click
+            soundIcon.addEventListener('click', () => {
+                if (isPlaying) {
+                    stopEnvironmentMusic();
+                    isPlaying = false;
+                    soundIcon.src = "../images/different-scenarios/base/mute-icon.png"; // Change to sound icon
+                }
+                else if(!isPlaying){
+                    playEnvironmentMusic();
+                    isPlaying = true;
+                    soundIcon.src = "../images/different-scenarios/base/sound-icon.png"; // Change to sound icon
+                }
+            });
+
+            // Set up sound confirmation button click handlers
+            yesSoundButton.addEventListener('click', () => {
+                handleSoundConfirmation('yes');
+            });
+
+            noSoundButton.addEventListener('click', () => {
+                handleSoundConfirmation('no');
+            });
+
+            // Define the text-to-speech function
+            function speakText(text) {
+                const synth = window.speechSynthesis;
+                const utterance = new SpeechSynthesisUtterance(text);
+
+                // Set the language to English with a Singaporean accent
+                utterance.lang = 'en-SG';
+                
+                utterance.pitch = 1;
+                utterance.rate = 1;
+                
+                // Speak the text
+                synth.speak(utterance);
+            }
+
+            // Define the stop text-to-speech function
+            function stopTextToSpeech() {
+                const synth = window.speechSynthesis;
+                if (synth.speaking || synth.pending) {
+                    synth.cancel();
+                }
+            }
+
+             // Add click event listener to the Text to Speech icon
+            textToSpeechIcon.addEventListener('click', () => {
+                selectedLevelData.phases[currentPhase]
+                stopEnvironmentMusic();
+                let audioSrc;
+                let level;
+                if (gameState === "old") {
+                    level = savedPhaseData.level.phases[savedPhaseData.phase]
+
+                    audioSrc = level['text-to-speech'];
+                } else {
+                    level = selectedLevelData.phases[currentPhase]
+                    audioSrc = level['text-to-speech'];
+                }
+
+                speakText(audioSrc);
+            });
+
+            // Update progress Bar
+            function updateProgressBar(phaseIndex, totalPhases) {
+            // Calculate the percentage
+            const percentage = Math.round((phaseIndex / totalPhases) * 100);
+            
+            // Update the progress bar width and text
+            progressBar.style.width = percentage + '%';
+            progressText.textContent = percentage + '%';
+
+            if (percentage > 50){
+                progressText.style.color = '#ffffff'; 
+            } 
+        }
+
+
+            // Function to check if a badge is already in the list
+            function isBadgeInList(badgeList, badge) {
+                return badgeList.some(item => item[0] === badge);
+            }
+
+            // Function to update the UI based on the current phase
+            function updateUI(phase) {
+                if (phase && phase.options) {
+                    // Update the phase image and title
+                    phaseImage.src = phase.phaseImage || '#';
+                    phaseTitle.textContent = phase.phaseTitle || 'Phase Title';
+
+                    // Update options
+                    options.forEach((option, index) => {
+                        const optionData = phase.options[index];
+                        if (optionData) {
+                            option.setAttribute('data-consequence', JSON.stringify(optionData.consequence) || '');
+                            option.setAttribute('data-continue', JSON.stringify(optionData['correct-continuation']) || '');
+                            document.getElementById(`option${index + 1}-text`).textContent = optionData.optionText || 'Option';
+                            document.getElementById(`option${index + 1}-image`).src = optionData.image || '';
+                        }
+                    });
+                    // Ensure margins are reset when updating the UI
+                    options.forEach(option => {
+                        option.style.marginBottom = '';
+                    });
+                }
+            }
+            // Set up option click handlers
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    nextButton.removeEventListener('click', handleNextButtonClick);
+                    // get atttribute (consequence)
+                    const consequenceData = option.getAttribute('data-consequence');
+                    const consequence = consequenceData ? JSON.parse(consequenceData) : null;
+                    // get atttribute (continue)
+                    const continueData = option.getAttribute('data-continue');
+                    const correct = continueData ? JSON.parse(continueData) : null;
+
+                    stopTextToSpeech() 
+                    if (consequence) {
+                        consequencePopup.style.display = 'flex';
+                        const consequence_popupcontent = consequencePopup.querySelector('.popup-content') 
+                        consequence_popupcontent.classList.add('shake'); // Add shake class to start animation
+                        consequenceImage.src = consequence.consequence_image || '';
+                        consequenceText.textContent = consequence.consequence_text || '';
+
+                        // Remove the shake class after 5 seconds to stop the animation
+                        setTimeout(() => {
+                            consequence_popupcontent.classList.remove('shake');
+                        }, 2000);
+                    }
+                    else if (correct) {
+                        continuePopup.style.display = 'flex';
+                        continueImage.src = correct.correct_image || '';  
+                        continueText.textContent = correct.correct_text || '';
+                        confettiContainer.style.display = 'flex';
+                        confettiAnimation.play(); // Play the animation 
+                        
+                        // Hide the confetti container after 5 seconds
+                        setTimeout(() => {
+                            confettiContainer.style.display = 'none';
+                        }, 5000);
+                        nextButton.addEventListener('click', handleNextButtonClick);
+                    }
+                });
+            });
+
+            // Function to handle the next button click
+            function handleNextButtonClick() {
+                confettiAnimation.stop();
+                continuePopup.style.display = "none"
+                // Go to next phase
+                currentPhase++;
+                console.log(currentPhase);
+                if (currentPhase < selectedLevelData.phases.length) {
+                    updateUI(selectedLevelData.phases[currentPhase]);
+                    updateProgressBar(currentPhase, selectedLevelData.phases.length);
+                } else {
+                    handleGameOver();
+                }
+            }
+
+            // Function to handle game over state
+            function handleGameOver() {
+                progressContainer.style.display = "none"
+                header.style.display = "none";
+                stopEnvironmentMusic();
+                stopTextToSpeech() 
+                isPlaying = false;
+                soundIcon.classList.add('disabled');
+                // Handle end of game
+                if (!isBadgeInList(badgeList, selectedLevelData.badge)) {
+                    badgeList.push([selectedLevelData.badge, selectedLevelData.badge_title]);
+                    localStorage.setItem('badgeList', JSON.stringify(badgeList));
+                }
+
+                phaseTitle.textContent = "Game Over";
+                phaseImage.src = selectedLevelData.badge;
+                exitBox.style.display = 'none';
+                options.forEach((option, index) => {
+                    option.style.marginBottom = '30px'; // Increase gap
+                    if (index === 0) {
+                        // Set the first option to "Main Menu"
+                        document.getElementById('option1-text').textContent = 'Main Menu';
+                        document.getElementById('option1-image').src = '../images/different-scenarios/base/home-icon.png';
+                        option.addEventListener('click', () => {
+                            window.location.href = '../homepage-pages/homepage.html'; // Redirect to main menu
+                            localStorage.removeItem("selectedLevelData");
+                            if (gameState === "old") {
+                                localStorage.removeItem("currentPhase");
+                            }
+                        });
+                    } else if (index === 1) {
+                        // Set the second option to "Try Again"
+                        document.getElementById('option2-text').textContent = 'Try Again';
+                        document.getElementById('option2-image').src = '../images/different-scenarios/base/try-again-icon.jpg';
+                        option.addEventListener('click', () => {
+                            document.getElementById('option1-text').textContent = "";
+                            document.getElementById('option2-text').textContent = "";
+                            exitBox.style.display = 'flex';
+                            consequencePopup.style.display = 'none';
+                            window.location.href = ""
+                            currentPhase = 0; // Reset to the first phase
+                            if (gameState === "old") {
+                                // Retrieve the full level data again and reset
+                                updateUI(savedPhaseData.level.phases[currentPhase]);
+                                localStorage.removeItem("currentPhase");
+                            } else {
+                                updateUI(selectedLevelData.phases[currentPhase]);
+                            }
+                        });
+                    }
+                });
+            }
+
+            // Set up consequence popup try again button
+            tryAgainButton.addEventListener('click', () => {
+                consequencePopup.style.display = 'none';
+            });
+
+            // Set up "Exit Game" button to show the confirmation popup
+            exitBox.addEventListener('click', () => {
+                exitConfirmationPopup.style.display = 'flex';
+            });
+
+            // Close the exit popup when clicking the close button or cancel button
+            closeExitPopup.addEventListener('click', () => {
+                exitConfirmationPopup.style.display = 'none';
+            });
+
+            cancelExitButton.addEventListener('click', () => {
+                exitConfirmationPopup.style.display = 'none';
+            });
+
+            // Confirm exit: save current phase to local storage and redirect
+            confirmExitButton.addEventListener('click', () => {
+                // Save the current phase to local storage
+                localStorage.setItem('currentPhase', JSON.stringify({
+                    level: selectedLevelData,
+                    phase: currentPhase
+                }));
+                // Close the popup and redirect to the main page
+                exitConfirmationPopup.style.display = 'none';
+                window.location.href = '../homepage-pages/homepage.html'; // Redirect to the main page
+            });
+            initializePhase();
+        });
+
+    </script>
+</body>
+</html>

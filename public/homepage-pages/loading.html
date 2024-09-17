@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Mode</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+     <!-- Lottie Link-->
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
+</head>
+<style>
+    /* Styling for the consequence popup */
+    .popup{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5); /* Overlay behind the popup */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .popup-content{
+        background-color: #596BB3; 
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        width: 80%; 
+        max-width: 600px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        z-index: 1001;
+        position: relative; 
+        margin: auto; 
+    }
+
+    .popup-content img{
+        width: 80%; 
+        height: 200px;
+        display: block;
+        margin: 0 auto 20px;
+    }
+    .popup-content p {
+        color: white;
+        font-size: 24px;
+        margin: 50px 0 20px 0;
+    }
+
+    .popup-content button {
+        font-family: 'Open Sans', sans-serif;
+        background-color: #1E386B;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 10px 20px;
+        font-size: 24px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin: 10px;
+    }
+
+    .popup-content button:hover {
+        background-color: #16306F;
+    }
+
+    #close-popup-button {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        background-color: #1E386B;
+        border-radius: 50%; 
+        border: none;
+        font-size: 28px; 
+        width: 40px; 
+        height: 40px; 
+        color: white;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+<body class = "loading">
+    <a href = "homepage.html" class="back-button">
+        <img src="../images/scenario-html/back-icon.png" alt="Back">
+        <span>Back</span>
+    </a>
+    <div class="content">
+        <h2>Choose an<br>Option to Begin</h2>
+        <a href="#" id = "start-new-game" class="option">
+            <img id = "newgame-img" src="../images/loading-html/new-game-icon.png" alt="Start a new game">
+            <div class="option-text">Start a new game</div>
+        </a>
+        <a href="#" id = "loadgame" class="option">
+            <img id = "loadgame-img" src="../images/loading-html/loading-game.png" alt="Load recent game">
+            <div class="option-text">Load recently played game</div>
+        </a>
+    </div>
+    <div id="no-save-popup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <span id="close-popup-button">&times;</span>
+            <img id="not-found-image" src="../images/different-scenarios/base/not-found-icon.png" alt="Not Found Image">
+            <p>No saved game found!</p>
+            <button id="return-button">Return</button>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loadGameButton = document.getElementById('loadgame');
+            const startNewGameButton = document.getElementById('start-new-game');
+            const noSavePopup = document.getElementById('no-save-popup');
+            const returnButton = document.getElementById('return-button');
+            const closePopupButton = document.getElementById('close-popup-button');
+
+            startNewGameButton.addEventListener('click', () => {
+                // Set the game state to 'new'
+                localStorage.setItem('gameState', 'new');
+                // Redirect to the scenario page
+                window.location.href = `../homepage-pages/scenario.html`;
+            });
+            
+            loadGameButton.addEventListener('click', () => {
+                const savedGameData = JSON.parse(localStorage.getItem('currentPhase'));
+
+                if (savedGameData) {
+                    localStorage.setItem('gameState', 'old');
+                    // Assuming the scenario page URL is something like 'scenario.html'
+                    window.location.href = `../specific-scenario/specific-scenario.html`;
+                } else {
+                    // Show the popup if no saved game data is found
+                    noSavePopup.style.display = 'flex';
+                }
+            });
+
+            returnButton.addEventListener('click', () => {
+                // Close the popup and allow the user to retry
+                noSavePopup.style.display = 'none';
+            });
+
+            closePopupButton.addEventListener('click', () => {
+                // Close the popup without retrying
+                noSavePopup.style.display = 'none';
+            });
+        });
+
+    </script>
+</body>
+</html>

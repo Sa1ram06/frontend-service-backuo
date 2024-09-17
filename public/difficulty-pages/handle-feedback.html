@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handle Feedback</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+</head>
+<body class = "scenario">
+    <a href = "../homepage-pages/homepage.html" class="back-button">
+        <img src="../images/scenario-html/back-icon.png" alt="Back">
+        <span>Back</span>
+    </a>
+    <div class="content">
+        <h2>Choose Your<br>Diffculty Level</h2>
+        <a href="#" class="option scenario-option" data-level="Handle-Feedback-Close-Friend">
+            <div class="difficulty-bar medium">
+                <div class="bar1"></div>
+                <span>Easy</span>
+              </div>
+            <img src="../images/difficulty-level/easy-diff.png" alt="Close Friend">
+            <div class="option-text">Close Friend</div>
+        </a>
+        <a href="#" class="option scenario-option locked" data-level="Handle-Feedback-MINDS-Staff">
+            <div class="difficulty-bar medium">
+                <div class="bar2"></div>
+                <span>Medium</span>
+              </div>
+            <img id = "minds-img" src="../images/difficulty-level/med-diff.png" alt="MINDS Staff">
+            <div class="option-text">MINDS Staff</div>
+            <div class="overlay">
+                <img class="lock-icon" src="../images/different-scenarios/base/lock.png" alt="Locked">
+            </div>
+        </a>
+        <a href="#" class="option scenario-option locked" data-level="Handle-Feedback-Workplace">
+            <div class="difficulty-bar medium">
+                <div class="bar3"></div>
+                <span>Hard</span>
+              </div>
+            <img id= "workplace-img"src="../images/difficulty-level/feedback-hard-diff.png" alt="Workplace">
+            <div class="option-text">Workplace</div>
+            <div class="overlay">
+                <img class="lock-icon" src="../images/different-scenarios/base/lock.png" alt="Locked">
+            </div>
+        </a>
+    </div>
+    <script src = "../scripts/specific-scenario-load.js"></script>
+</body>
+</html>
