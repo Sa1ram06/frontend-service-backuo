@@ -62,7 +62,7 @@ async function sendMessage() {
 
         try {
             // Send the message to the backend
-            const response = await fetch('https://chatbot-service-np.apps.hackathon.cnasg.dellcsc.com/api/chat', {
+            const response = await fetch('https://chatbot-service-backup-np.apps.innovate.sg-cna.com/api/chat', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -151,7 +151,7 @@ async function handleButtonClick(buttonText) {
 
     try {
         // Send the message to the backend
-        const response = await fetch('https://chatbot-service-np.apps.hackathon.cnasg.dellcsc.com/api/chat', {
+        const response = await fetch('https://chatbot-service-backup-np.apps.innovate.sg-cna.com/api/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
