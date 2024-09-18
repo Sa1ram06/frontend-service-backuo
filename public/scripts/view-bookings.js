@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', async function () {
 
     const accountId = "ACC00002"
-    const fetchbookings = await fetch(`https://booking-service-np.apps.hackathon.cnasg.dellcsc.com/api/bookings/${accountId}`, {
+    const fetchbookings = await fetch(`https://booking-service-backup-np.apps.innovate.sg-cna.com/api/bookings/${accountId}`, {
         method: 'GET'
     });
 
