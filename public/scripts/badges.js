@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
         } else {
-            badgeDisplay.innerHTML = '<p>No badges available</p>';
+            badgeDisplay.innerHTML = '<h4>No badges available</h4>';
         }
     }
 

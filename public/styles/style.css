@@ -642,6 +642,11 @@
     margin: 20px 0px;
     font-size: 32px;
 }
+.badges h4{
+    color: black;
+    margin: 20px 0px;
+    font-size: 26px;
+}
 
 #badge-display p {
     color: white;
